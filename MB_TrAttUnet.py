@@ -255,7 +255,6 @@ class MBTrAttUnet(nn.Module):
         self.vit = ViT(in_channels=3,img_size=224,patch_size=16)
         nb_filter = [32, 64, 128, 256, 512]        
         self.encoder1 = DoubleConv(in_channels, nb_filter[0])
-        # self.conv0_0 = DoubleConv(input_channels, nb_filter[0])
         self.conv1 = DoubleConv(in_channels, nb_filter[0])
         self.conv2 = DoubleConv(nb_filter[1], nb_filter[1])
         self.conv3 = DoubleConv(nb_filter[2], nb_filter[2])
