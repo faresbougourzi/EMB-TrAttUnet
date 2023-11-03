@@ -10,15 +10,12 @@ import numpy as np
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
-kernel1 = np.ones((7,7),np.uint8)
 criterion = CrossEntropyLoss()
 TFtotensor = ToTensorV2()
 
 def Hybrid_loss(GT_Inf, Pred_Inf):
     Ed = np.array(GT_Inf).copy()
     Ed = Ed.astype(np.uint8)
-    Edge = cv2.morphologyEx(Ed, cv2.MORPH_GRADIENT, kernel1)
-    Edge[Edge > 0.0] = 1.0
     
     lung_inf  = Ed.copy()
     lung_inf = np.where(lung_inf < 2, 0, lung_inf)
